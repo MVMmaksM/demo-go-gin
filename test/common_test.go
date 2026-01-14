@@ -1,4 +1,4 @@
-package common
+package apptest
 
 import (
 	"net/http"
@@ -22,12 +22,12 @@ func TestMain(m *testing.M) {
 func GetRouter(withTemplates bool) *gin.Engine {
 	r := gin.Default()
 	if withTemplates {
-		r.LoadHTMLGlob("../../templates/*")
+		r.LoadHTMLGlob("../templates/*")
 	}
 	return r
 }
 
-func TestHTTPResponse(t *testing.T, r *gin.Engine, req *http.Request, f func(w *httptest.ResponseRecorder) bool) {
+func CommonHTTPResponse(t *testing.T, r *gin.Engine, req *http.Request, f func(w *httptest.ResponseRecorder) bool) {
 
 	w := httptest.NewRecorder()
 	r.ServeHTTP(w, req)
