@@ -1,5 +1,9 @@
 package models
 
+import (
+	"fmt"
+)
+
 type Article struct {
 	ID      int    `json:"id"`
 	Title   string `json:"title"`
@@ -26,4 +30,14 @@ var ArticleList = []Article{
 
 func GetAllArticles() []Article {
 	return ArticleList
+}
+
+func GetArticleById(Id int) (*Article, error) {
+	for _, a := range ArticleList {
+		if a.ID == Id {
+			return &a, nil
+		}
+	}
+
+	return nil, fmt.Errorf("Article by id: %d not found", Id)
 }

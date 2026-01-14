@@ -13,6 +13,7 @@ func main() {
 	router.LoadHTMLGlob("templates/*")
 
 	router.GET("/", handlers.ShowIndexPage)
+	router.GET("/article/view/:article_id", handlers.GetDetailArticle)
 
 	err := router.Run(":9000")
 	if err != nil {
